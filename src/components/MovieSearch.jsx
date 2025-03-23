@@ -10,11 +10,8 @@ const MovieSearch = () => {
   const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
   const { tabs, activeTabIndex } = useSelector((state) => state.cinetrack);
   
-  console.log("Redux State:", tabs, activeTabIndex);
-
   useEffect(() => {
     if (searchTerm.length < 3) return;
-
     const fetchMovies = async () => {
       try {
         const response = await fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}`);
@@ -24,7 +21,6 @@ const MovieSearch = () => {
         console.error("Error fetching movies:", error);
       }
     };
-
     fetchMovies();
   }, [searchTerm]);
 
@@ -32,10 +28,11 @@ const MovieSearch = () => {
     const response = await fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${API_KEY}`);
     const data = await response.json();
     dispatch(setMovieDetails(data));
-
     setSearchTerm("");
     setShowSuggestions(false);
   };
+
+  if (tabs.length === 0) return null;
 
   return (
     <div className="p-4">
@@ -52,7 +49,6 @@ const MovieSearch = () => {
                    focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300 
                    placeholder-gray-300 shadow-md"
       />
-
       {showSuggestions && searchResults.length > 0 && (
         <ul className="mt-4 space-y-3">
           {searchResults.map((movie) => (
