@@ -9,9 +9,11 @@ const Tabs = () => {
     <div className="flex flex-col items-center w-full">
       {tabs.length === 0 ? (
         <div className="text-white text-center mt-10">
-          <p className="text-lg mb-3">🚀 No tabs open! Click below to start searching for movies.</p>
+          <p className="text-lg font-semibold text-gray-300">
+            🚀 No tabs open! Click below to start searching for movies.
+          </p>
           <button 
-            className="p-3 px-5 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-all"
+            className="mt-4 p-3 px-5 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-all"
             onClick={() => dispatch(addTab())}
           >
             ➕ Create New Tab
@@ -21,7 +23,7 @@ const Tabs = () => {
         <div className="flex items-center gap-2 border-b p-2 bg-gray-900 text-white w-full">
           {tabs.map((tab, index) => {
             const title = tab.movie ? tab.movie.Title : "New Tab";
-            const trimmedTitle = title.length > 12 ? title.substring(0, 10) + "..." : title;
+            const trimmedTitle = title.length > 12 ? title.substring(0, 10) + "...": title;
 
             return (
               <div 
@@ -55,6 +57,5 @@ const Tabs = () => {
     </div>
   );
 };
-
 
 export default Tabs;
