@@ -30,7 +30,7 @@ const Tabs = () => {
                 key={index} 
                 className={`flex items-center justify-between p-2 px-4 w-40 rounded-lg cursor-pointer transition-all 
                 text-white font-medium ${index === activeTabIndex ? "bg-blue-600 scale-105 shadow-md" : "bg-gray-700 hover:bg-gray-600"}`}
-                onClick={() => dispatch(setActiveTab(index))}
+                onClick={() => dispatch(setActiveTab( index ))}
               >
                 <span className="truncate">{trimmedTitle}</span>
                 <button 
